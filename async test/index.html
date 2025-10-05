@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Abdul Game</title>
+  </head>
+  <body
+    style="
+      margin: 0%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background: lightblue;
+    "
+  >
+    <div
+      id="playground"
+      style="display: flex; flex-direction: column; align-items: center"
+    >
+      <h1 id="textArea"></h1>
+    </div>
+    <script>
+      const textOne = "Hello.";
+      const textTwo = "What's up...?";
+      const textThree = "This is Aarish.";
+      const textFour = "Yup. He is a Gandu.";
+      const textFive = "Do you have something to say to him?";
+      const textSix = "Ok. See you later...........!";
+      const textSeven = "He got angry.";
+      const textEight = "He threw something at you............";
+      const textNine = "It's a BOMB.......!";
+      const textTen = "Great job.";
+
+      let image = document.createElement("img");
+      image.setAttribute("src", "./aarish.jpg");
+      image.style.borderRadius = "10px";
+      image.style.width = "300px";
+      image.style.height = "300px";
+
+      let yesButton = document.createElement("button");
+      yesButton.setAttribute("id", "true");
+      yesButton.innerText = "Yes";
+      yesButton.style.width = "100px";
+      yesButton.style.height = "40px";
+
+      let noButton = document.createElement("button");
+      noButton.setAttribute("id", "false");
+      noButton.innerText = "No";
+      noButton.style.width = "100px";
+      noButton.style.height = "40px";
+
+      let input = document.createElement("input");
+      input.setAttribute("placeholder", "What do you want to say?");
+      input.style.width = "500px";
+      input.style.height = "40px";
+
+      let submitButton = document.createElement("button");
+      submitButton.style.width = "100px";
+      submitButton.style.height = "40px";
+      submitButton.innerText = "Yes";
+
+      let throwBack = document.createElement("button");
+      throwBack.innerText = "ThrowBack";
+      throwBack.style.width = "200px";
+      throwBack.style.height = "40px";
+
+      let putOut = document.createElement("button");
+      putOut.innerText = "Put out the fire";
+      putOut.style.width = "200px";
+      putOut.style.height = "40px";
+
+      let aarishImage = document.createElement("img");
+      aarishImage.setAttribute("src", "./aarishImage.jpg");
+      aarishImage.style.borderRadius = "10px";
+      aarishImage.style.width = "300px";
+      aarishImage.style.height = "300px";
+
+      let timer = function () {
+        for (let i = 3; (i) => 0; i--) {
+          text.innerText = i;
+        }
+      };
+
+      let main = document.getElementById("playground");
+      let text = document.getElementById("textArea");
+      let greetings = function () {
+        text.innerText = textOne;
+      };
+      let secondStep = function () {
+        text.innerText = "";
+        text.innerText = textTwo;
+      };
+      let thirdStep = function () {
+        text.innerText = "";
+        text.innerText = textThree;
+
+        main.appendChild(image);
+      };
+      let fourthStep = function () {
+        main.removeChild(image);
+        text.innerText = "";
+        text.innerText = textFour;
+      };
+      let fifthStep = function () {
+        text.innerText = "";
+        text.innerText = textFive;
+        main.appendChild(noButton);
+        main.appendChild(yesButton);
+      };
+
+      yesButton.addEventListener("click", yesPath);
+      noButton.addEventListener("click", noPath);
+
+      function noPath() {
+        main.removeChild(yesButton);
+        main.removeChild(noButton);
+        text.innerText = textSix;
+      }
+
+      function yesPath() {
+        main.removeChild(yesButton);
+        main.removeChild(noButton);
+        text.innerText = "";
+        main.appendChild(input);
+        main.appendChild(submitButton);
+      }
+
+      let sixthStep = function () {
+        main.removeChild(input);
+        main.removeChild(submitButton);
+        text.innerText = textSeven;
+
+        setTimeout(seventhStep, 2000);
+        setTimeout(eighthStep, 4000);
+        setTimeout(ninthStep, 6000);
+        setTimeout(tenthStep, 8000);
+      };
+      submitButton.addEventListener("click", sixthStep);
+
+      let seventhStep = function () {
+        text.innerText = textEight;
+      };
+      let eighthStep = function () {
+        text.innerText = `💣`;
+      };
+
+      let ninthStep = function () {
+        text.innerText = textNine;
+      };
+
+      let tenthStep = function () {
+        text.innerText = "";
+        main.appendChild(putOut);
+        main.appendChild(throwBack);
+      };
+      let eleventhStep = function () {
+        text.innerText = textTen;
+        main.removeChild(putOut);
+        main.removeChild(throwBack);
+        let savedText = function () {
+          text.innerText = "You're saved.....!";
+        };
+        let byeText = function () {
+          text.innerText = textSix;
+        };
+
+        setInterval(savedText, 2000);
+        setInterval(byeText, 4000);
+      };
+      let twelfthStep = function () {
+        text.innerText = "Good decision...!";
+        let three = function () {
+          text.innerText = "3";
+        };
+        let two = function () {
+          text.innerText = "2";
+        };
+        let one = function () {
+          text.innerText = "1";
+        };
+        let allahHuAkbar = function () {
+          text.innerText = "Allah Hu Akbar...!";
+        };
+        let detonation = function () {
+          document.querySelector("body").style =
+            "margin: 0%;display: flex;justify-content: center;align-items: center;height: 100vh; background: #212121;";
+
+          text.innerText = "Boom!💥";
+        };
+        let addAarishImage = function () {
+          document.querySelector("body").style =
+            "margin: 0%;display: flex;justify-content: center;align-items: center;height:100vh;background: lightblue;";
+          text.innerText = "";
+          main.appendChild(aarishImage);
+        };
+        let newText = function () {
+          main.removeChild(aarishImage);
+          text.innerText = "";
+          text.innerText = textTen;
+        };
+        let afterText = function () {
+          text.innerText = "";
+          text.innerHTML = textSix;
+        };
+        main.removeChild(putOut);
+        main.removeChild(throwBack);
+        setTimeout(three, 2000);
+        setTimeout(two, 3000);
+        setTimeout(one, 4000);
+        setTimeout(allahHuAkbar, 5000);
+        setTimeout(detonation, 7000);
+        setTimeout(addAarishImage, 9000);
+        setTimeout(newText, 11000);
+        setTimeout(afterText, 13000);
+      };
+
+      putOut.addEventListener("click", eleventhStep);
+      throwBack.addEventListener("click", twelfthStep);
+
+      setTimeout(greetings, 2000);
+      setTimeout(secondStep, 4000);
+      setTimeout(thirdStep, 6000);
+      setTimeout(fourthStep, 8000);
+      setTimeout(fifthStep, 10000);
+    </script>
+  </body>
+</html>
