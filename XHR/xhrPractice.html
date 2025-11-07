@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #212121;
+    }
+
+    #root {
+      color: white;
+      text-align: center;
+    }
+  </style>
+  <body id="root">
+    <button id="btn">Get Data</button>
+    <script>
+      const myUrl = "https://api.github.com/users/SahilTiwariDev";
+
+      //   const myReq = new XMLHttpRequest();
+      //   myReq.open("GET", myUrl);
+      //   myReq.onreadystatechange = function(){
+      //     console.log(myReq.readyState)
+      //     if (myReq.readyState === 4) {
+      //       const data = JSON.parse(this.response);
+      //       console.log(typeof data);
+      //       console.log(data.login);
+      //     }
+      //   };
+      //   myReq.send();
+
+      const xhr = new XMLHttpRequest();
+
+      let getMyData = document.getElementById("btn");
+      getMyData.addEventListener("click", () => {
+        xhr.open("GET", myUrl);
+        xhr.onreadystatechange = () => {
+          if (xhr.readyState === 4) {
+            getMyData.style.visibility = "hidden";
+            let myInfo = JSON.parse(xhr.response);
+            let main = document.getElementById("root");
+            // let content = document.createElement("h1");
+            // content.innerHTML = "hello";
+
+            // let content = document.createElement('img')
+            // content.src = myInfo.avatar_url
+
+            let contentArea = document.createElement("div");
+            contentArea.setAttribute(
+              "style",
+              `background: rgba(255, 255, 255, 0.1);
+   backdrop-filter: blur(10px);
+   border-radius: 20px;
+   padding: 40px;
+   text-align: center;
+   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+   border: 1px solid rgba(255, 255, 255, 0.2);
+   max-width: 400px;
+   width: 90%;
+   color: white;
+   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+   margin: 20px;`
+            );
+
+            let img = document.createElement("img");
+            img.src = myInfo.avatar_url;
+            img.alt = "My_Image";
+            img.setAttribute(
+              "style",
+              `
+   width: 150px;
+   height: 150px;
+   border-radius: 50%;
+   object-fit: cover;
+   border: 3px solid rgba(255, 255, 255, 0.3);
+   margin-bottom: 20px;
+`
+            );
+
+            let name = document.createElement("h3");
+            name.innerText = myInfo.name;
+            name.setAttribute(
+              "style",
+              `
+   margin: 0 0 10px 0;
+   font-size: 24px;
+   font-weight: 600;
+   color: white;
+`
+            );
+
+            let bio = document.createElement("p");
+            bio.innerText = myInfo.bio;
+            bio.setAttribute(
+              "style",
+              `
+   margin: 0;
+   font-size: 16px;
+   line-height: 1.5;
+   color: rgba(255, 255, 255, 0.8);
+   font-weight: 300;
+`
+            );
+
+            contentArea.appendChild(img);
+            contentArea.appendChild(name);
+            contentArea.appendChild(bio);
+
+            main.appendChild(contentArea);
+          }
+        };
+        xhr.send();
+      });
+    </script>
+  </body>
+</html>
